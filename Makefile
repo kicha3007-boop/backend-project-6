@@ -32,4 +32,7 @@ lint-fix:
 db-generate:
 	npx drizzle-kit generate
 
-.PHONY: setup prepare install build start dev test test-coverage lint lint-fix db-generate
+db-migrate:
+	node server/db/migrate.js
+
+.PHONY: setup prepare install build start dev test test-coverage lint lint-fix db-generate db-migrate
