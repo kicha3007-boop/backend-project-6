@@ -1,0 +1,14 @@
+{
+  "name": "@hexlet/code",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "server/plugin.js",
+  "scripts": {
+    "start": "fastify start server/plugin.js -a 0.0.0.0 -l info"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^5.6.0",
+    "fastify-cli": "^8.0.0"
+  }
+}
