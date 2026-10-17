@@ -1,0 +1,25 @@
+<% layout("../layouts/application", { header: it.task.name }) %>
+<div class="rounded-lg bg-white p-6 shadow-sm">
+  <% if (it.task.description) { %>
+  <p class="mb-4 whitespace-pre-line"><%= it.task.description %></p>
+  <% } %>
+  <dl class="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-2">
+    <dt class="text-gray-500"><%= it.t('views.fields.status') %></dt>
+    <dd><%= it.task.status.name %></dd>
+    <dt class="text-gray-500"><%= it.t('views.fields.creator') %></dt>
+    <dd><%= it.fullName(it.task.creator) %></dd>
+    <dt class="text-gray-500"><%= it.t('views.fields.executor') %></dt>
+    <dd><%= it.task.executor ? it.fullName(it.task.executor) : '' %></dd>
+    <dt class="text-gray-500"><%= it.t('views.fields.labels') %></dt>
+    <dd class="flex flex-wrap gap-2">
+      <% it.task.labels.forEach((label) => { %>
+      <span class="rounded bg-blue-100 px-2 py-0.5 text-sm text-blue-800"><%= label.name %></span>
+      <% }) %>
+    </dd>
+    <dt class="text-gray-500"><%= it.t('views.fields.createdAt') %></dt>
+    <dd><%= it.formatDate(it.task.createdAt) %></dd>
+  </dl>
+  <div class="mt-6">
+    <%~ include("../mixins/rowActions", { ...it, editPath: it.route('editTask', { id: it.task.id }), deletePath: it.route('task', { id: it.task.id }) }) %>
+  </div>
+</div>

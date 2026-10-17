@@ -1,0 +1,8 @@
+<form class="max-w-md" action="<%= it.action %>" method="post">
+  <% if (it.method) { %><input name="_method" type="hidden" value="<%= it.method %>"><% } %>
+  <%~ include("../mixins/input", { ...it, name: 'firstName', label: it.t('views.fields.firstName'), value: it.user.firstName }) %>
+  <%~ include("../mixins/input", { ...it, name: 'lastName', label: it.t('views.fields.lastName'), value: it.user.lastName }) %>
+  <%~ include("../mixins/input", { ...it, name: 'email', label: it.t('views.fields.email'), value: it.user.email, type: 'email' }) %>
+  <%~ include("../mixins/input", { ...it, name: 'password', label: it.t('views.fields.password'), value: '', type: 'password' }) %>
+  <%~ include("../mixins/submit", { value: it.submit }) %>
+</form>

@@ -1,0 +1,2 @@
+<% layout("../layouts/application", { header: it.t('views.statuses.edit.title') }) %>
+<%~ include("./_form", { ...it, action: it.route('status', { id: it.record.id }), method: 'patch', submit: it.t('views.actions.edit') }) %>

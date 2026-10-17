@@ -1,0 +1,13 @@
+{
+  "users": {
+    "existing": { "firstName": "Тирион", "lastName": "Ланнистер", "email": "tyrion@example.com", "password": "secret" },
+    "other": { "firstName": "Джон", "lastName": "Сноу", "email": "jon@example.com", "password": "winter" },
+    "new": { "firstName": "Арья", "lastName": "Старк", "email": "arya@example.com", "password": "needle" },
+    "invalid": { "firstName": "", "lastName": "", "email": "not-an-email", "password": "1" }
+  },
+  "statuses": { "existing": { "name": "новый" }, "new": { "name": "в работе" } },
+  "labels": { "existing": { "name": "bug" }, "new": { "name": "feature" } },
+  "tasks": {
+    "new": { "name": "Подготовить отчёт", "description": "Квартальный отчёт" }
+  }
+}

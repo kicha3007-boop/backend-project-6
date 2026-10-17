@@ -1,0 +1,14 @@
+<%
+  const statusOptions = it.statuses.map((status) => ({ value: status.id, text: status.name }));
+  const userOptions = it.users.map((user) => ({ value: user.id, text: it.fullName(user) }));
+  const labelOptions = it.labels.map((label) => ({ value: label.id, text: label.name }));
+%>
+<form class="max-w-xl" action="<%= it.action %>" method="post">
+  <% if (it.method) { %><input name="_method" type="hidden" value="<%= it.method %>"><% } %>
+  <%~ include("../mixins/input", { ...it, name: 'name', label: it.t('views.fields.name'), value: it.task.name }) %>
+  <%~ include("../mixins/input", { ...it, name: 'description', label: it.t('views.fields.description'), value: it.task.description, type: 'textarea' }) %>
+  <%~ include("../mixins/select", { ...it, name: 'statusId', label: it.t('views.fields.status'), options: statusOptions, selected: it.task.statusId }) %>
+  <%~ include("../mixins/select", { ...it, name: 'executorId', label: it.t('views.fields.executor'), options: userOptions, selected: it.task.executorId }) %>
+  <%~ include("../mixins/select", { ...it, name: 'labels', label: it.t('views.fields.labels'), options: labelOptions, selected: it.task.labelIds, multiple: true }) %>
+  <%~ include("../mixins/submit", { value: it.submit }) %>
+</form>

@@ -1,0 +1,4 @@
+<div class="flex items-center gap-3">
+  <a class="text-blue-700 hover:underline" href="<%= it.editPath %>"><%= it.t('views.actions.edit') %></a>
+  <%~ include("./buttonTo", { action: it.deletePath, method: 'delete', value: it.t('views.actions.delete'), class: 'cursor-pointer text-red-600 hover:underline' }) %>
+</div>

@@ -1,0 +1,2 @@
+<% layout("../layouts/application", { header: it.t('views.tasks.new.title') }) %>
+<%~ include("./_form", { ...it, action: it.route('tasks'), submit: it.t('views.actions.create') }) %>

@@ -1,0 +1,24 @@
+<% layout("../layouts/application", { header: it.t('views.statuses.title') }) %>
+<a class="mb-4 inline-block rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700" href="<%= it.route('newStatus') %>"><%= it.t('views.statuses.create') %></a>
+<table class="w-full bg-white text-left shadow-sm">
+  <thead class="border-b border-gray-200">
+    <tr>
+      <th class="px-3 py-2"><%= it.t('views.fields.id') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.name') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.createdAt') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% it.records.forEach((record) => { %>
+    <tr class="border-b border-gray-100">
+      <td class="px-3 py-2"><%= record.id %></td>
+      <td class="px-3 py-2"><%= record.name %></td>
+      <td class="px-3 py-2"><%= it.formatDate(record.createdAt) %></td>
+      <td class="px-3 py-2">
+        <%~ include("../mixins/rowActions", { ...it, editPath: it.route('editStatus', { id: record.id }), deletePath: it.route('status', { id: record.id }) }) %>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

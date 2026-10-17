@@ -1,0 +1,47 @@
+<%
+  const statusOptions = it.statuses.map((status) => ({ value: status.id, text: status.name }));
+  const userOptions = it.users.map((user) => ({ value: user.id, text: it.fullName(user) }));
+  const labelOptions = it.labels.map((label) => ({ value: label.id, text: label.name }));
+%>
+<% layout("../layouts/application", { header: it.t('views.tasks.title') }) %>
+<a class="mb-4 inline-block rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700" href="<%= it.route('newTask') %>"><%= it.t('views.tasks.create') %></a>
+<form class="mb-6 grid items-end gap-4 rounded-lg bg-white p-4 shadow-sm md:grid-cols-5" action="<%= it.route('tasks') %>" method="get">
+  <%~ include("../mixins/select", { ...it, errors: {}, id: 'filter_status', fieldName: 'status', name: 'status', label: it.t('views.fields.status'), options: statusOptions, selected: it.filter.status }) %>
+  <%~ include("../mixins/select", { ...it, errors: {}, id: 'filter_executor', fieldName: 'executor', name: 'executor', label: it.t('views.fields.executor'), options: userOptions, selected: it.filter.executor }) %>
+  <%~ include("../mixins/select", { ...it, errors: {}, id: 'filter_label', fieldName: 'label', name: 'label', label: it.t('views.fields.label'), options: labelOptions, selected: it.filter.label }) %>
+  <div class="mb-4 flex items-center gap-2">
+    <input class="rounded border-gray-300" id="filter_isCreatorUser" name="isCreatorUser" type="checkbox" <%= it.filter.isCreatorUser ? 'checked' : '' %>>
+    <label for="filter_isCreatorUser"><%= it.t('views.tasks.filter.isCreatorUser') %></label>
+  </div>
+  <div class="mb-4">
+    <%~ include("../mixins/submit", { value: it.t('views.tasks.filter.submit') }) %>
+  </div>
+</form>
+<table class="w-full bg-white text-left shadow-sm">
+  <thead class="border-b border-gray-200">
+    <tr>
+      <th class="px-3 py-2"><%= it.t('views.fields.id') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.name') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.status') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.creator') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.executor') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.createdAt') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% it.tasks.forEach((task) => { %>
+    <tr class="border-b border-gray-100">
+      <td class="px-3 py-2"><%= task.id %></td>
+      <td class="px-3 py-2"><a class="text-blue-700 hover:underline" href="<%= it.route('task', { id: task.id }) %>"><%= task.name %></a></td>
+      <td class="px-3 py-2"><%= task.status.name %></td>
+      <td class="px-3 py-2"><%= it.fullName(task.creator) %></td>
+      <td class="px-3 py-2"><%= task.executor ? it.fullName(task.executor) : '' %></td>
+      <td class="px-3 py-2"><%= it.formatDate(task.createdAt) %></td>
+      <td class="px-3 py-2">
+        <%~ include("../mixins/rowActions", { ...it, editPath: it.route('editTask', { id: task.id }), deletePath: it.route('task', { id: task.id }) }) %>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

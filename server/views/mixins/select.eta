@@ -1,0 +1,17 @@
+<%
+  const inputId = it.id ?? `data_${it.name}`;
+  const selected = [it.selected ?? []].flat().map(String);
+  const error = it.fieldErrors(it.errors, it.errorKey ?? it.name);
+%>
+<div class="mb-4">
+  <label class="mb-1 block font-medium" for="<%= inputId %>"><%= it.label %></label>
+  <select class="w-full rounded border-gray-300 <%= error ? 'border-red-500' : '' %>" id="<%= inputId %>" name="<%= it.fieldName ?? `data[${it.name}]` %>" <%= it.multiple ? 'multiple' : '' %>>
+    <% if (!it.multiple) { %><option value=""></option><% } %>
+    <% it.options.forEach((option) => { %>
+    <option value="<%= option.value %>" <%= selected.includes(String(option.value)) ? 'selected' : '' %>><%= option.text %></option>
+    <% }) %>
+  </select>
+  <% if (error) { %>
+  <p class="mt-1 text-sm text-red-600"><%= error %></p>
+  <% } %>
+</div>

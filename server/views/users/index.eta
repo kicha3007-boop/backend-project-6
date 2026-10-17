@@ -1,0 +1,25 @@
+<% layout("../layouts/application", { header: it.t('views.users.title') }) %>
+<table class="w-full bg-white text-left shadow-sm">
+  <thead class="border-b border-gray-200">
+    <tr>
+      <th class="px-3 py-2"><%= it.t('views.fields.id') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.fullName') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.email') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.createdAt') %></th>
+      <th class="px-3 py-2"><%= it.t('views.fields.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% it.users.forEach((user) => { %>
+    <tr class="border-b border-gray-100">
+      <td class="px-3 py-2"><%= user.id %></td>
+      <td class="px-3 py-2"><%= it.fullName(user) %></td>
+      <td class="px-3 py-2"><%= user.email %></td>
+      <td class="px-3 py-2"><%= it.formatDate(user.createdAt) %></td>
+      <td class="px-3 py-2">
+        <%~ include("../mixins/rowActions", { ...it, editPath: it.route('editUser', { id: user.id }), deletePath: it.route('user', { id: user.id }) }) %>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

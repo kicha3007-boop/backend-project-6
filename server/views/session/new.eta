@@ -1,0 +1,6 @@
+<% layout("../layouts/application", { header: it.t('views.session.new.title') }) %>
+<form class="max-w-md" action="<%= it.route('session') %>" method="post">
+  <%~ include("../mixins/input", { ...it, name: 'email', label: it.t('views.fields.email'), value: it.signInForm.email, type: 'email' }) %>
+  <%~ include("../mixins/input", { ...it, name: 'password', label: it.t('views.fields.password'), value: '', type: 'password' }) %>
+  <%~ include("../mixins/submit", { value: it.t('views.session.new.submit') }) %>
+</form>

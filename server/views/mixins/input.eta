@@ -1,0 +1,15 @@
+<%
+  const inputId = `data_${it.name}`;
+  const error = it.fieldErrors(it.errors, it.name);
+%>
+<div class="mb-4">
+  <label class="mb-1 block font-medium" for="<%= inputId %>"><%= it.label %></label>
+  <% if (it.type === 'textarea') { %>
+  <textarea class="w-full rounded border-gray-300 <%= error ? 'border-red-500' : '' %>" id="<%= inputId %>" name="data[<%= it.name %>]" rows="3"><%= it.value ?? '' %></textarea>
+  <% } else { %>
+  <input class="w-full rounded border-gray-300 <%= error ? 'border-red-500' : '' %>" id="<%= inputId %>" name="data[<%= it.name %>]" type="<%= it.type ?? 'text' %>" value="<%= it.value ?? '' %>">
+  <% } %>
+  <% if (error) { %>
+  <p class="mt-1 text-sm text-red-600"><%= error %></p>
+  <% } %>
+</div>

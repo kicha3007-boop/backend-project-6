@@ -1,14 +1,55 @@
 {
   "name": "@hexlet/code",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Task manager: tasks, statuses, labels and users",
   "main": "server/plugin.js",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "start": "fastify start server/plugin.js -a 0.0.0.0 -l info"
+    "build": "vite build",
+    "start": "fastify start server/plugin.js -o -a 0.0.0.0 -l info",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "oxlint && oxfmt --ignore-path=.oxfmtignore --check",
+    "db:generate": "drizzle-kit generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kicha3007-boop/backend-project-6.git"
   },
   "license": "ISC",
   "dependencies": {
-    "fastify": "^5.6.0",
-    "fastify-cli": "^8.0.0"
+    "@electric-sql/pglite": "^0.5.10",
+    "@fastify/formbody": "^9.0.1",
+    "@fastify/passport": "^4.0.4",
+    "@fastify/secure-session": "^8.4.1",
+    "@fastify/sensible": "^6.0.7",
+    "@fastify/static": "^10.1.6",
+    "@fastify/view": "^12.0.1",
+    "@hexlet/fastify-method-override": "github:hexlet-components/fastify-method-override",
+    "@sentry/node": "^11.8.0",
+    "dotenv": "^18.0.8",
+    "drizzle-orm": "^0.45.4",
+    "eta": "^4.6.0",
+    "fastify": "^5.12.7",
+    "fastify-cli": "^8.0.3",
+    "fastify-reverse-routes": "^3.0.0",
+    "i18next": "^26.4.7",
+    "pg": "^8.23.1",
+    "qs": "^6.16.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitest/coverage-v8": "^5.0.5",
+    "drizzle-kit": "^0.31.11",
+    "oxfmt": "^0.73.0",
+    "oxlint": "^1.88.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
   }
 }

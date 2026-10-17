@@ -1,0 +1,5 @@
+<form class="max-w-md" action="<%= it.action %>" method="post">
+  <% if (it.method) { %><input name="_method" type="hidden" value="<%= it.method %>"><% } %>
+  <%~ include("../mixins/input", { ...it, name: 'name', label: it.t('views.fields.name'), value: it.record.name }) %>
+  <%~ include("../mixins/submit", { value: it.submit }) %>
+</form>
